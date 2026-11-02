@@ -179,6 +179,7 @@ python -m src.endpoints     # optional: score individual endpoints from spans
 python -m src.ablation      # optional: the two ablations
 python -m src.baselines     # optional: baselines + labelling sensitivity
 python -m src.propagation   # how far faults actually spread
+python -m src.weights       # validate the score's weights (OECD method)
 ```
 
 `python -m src.baselines` compares against the alternative labelling, which is

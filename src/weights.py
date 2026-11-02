@@ -230,6 +230,17 @@ def write_markdown(results: dict, mc: dict):
         "0.40 is what makes the composite rank slightly worse than the risk "
         "term alone.",
         "",
+        "The three data-driven schemes are derived in completely different "
+        "ways -- entropy from the spread of each component, discriminative "
+        "from class separation, learned by supervised fitting -- and they "
+        "converge on nearly the same answer ({}). Independent methods agreeing "
+        "is stronger evidence than any one of them alone.".format(
+            ", ".join(
+                "{} {:.2f}".format(n.split(" (")[0],
+                                   r["weights"]["failure risk"])
+                for n, r in results.items()
+                if n in ("entropy", "discriminative", "learned (logistic)"))),
+        "",
         "## Uncertainty analysis",
         "",
         "{} weight vectors were drawn from a flat Dirichlet distribution and "
@@ -278,7 +289,8 @@ def write_markdown(results: dict, mc: dict):
         "in `ABLATIONS.md`.",
         "",
         "A project that needed the weights to be optimal rather than "
-        "interpretable should use the `learned` row, and say so.",
+        "interpretable should use the {} row ({:.3f}), and say so.".format(
+            best[0], best[1]["pr_auc"]),
         "",
     ]
     path = REPORTS / "WEIGHTS.md"
