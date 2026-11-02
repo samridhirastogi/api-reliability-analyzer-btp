@@ -1,0 +1,65 @@
+{
+  "schemes": {
+    "proposal (0.40/0.35/0.25)": {
+      "pr_auc": 0.9678909070615105,
+      "roc_auc": 0.9909804508667579,
+      "weights": {
+        "failure risk": 0.4,
+        "error frequency": 0.35,
+        "response consistency": 0.25
+      },
+      "rank_agreement_with_proposal": 1.0
+    },
+    "equal (1/3 each)": {
+      "pr_auc": 0.9594774970609337,
+      "roc_auc": 0.9893034363981885,
+      "weights": {
+        "failure risk": 0.3333333333333333,
+        "error frequency": 0.3333333333333333,
+        "response consistency": 0.3333333333333333
+      },
+      "rank_agreement_with_proposal": 0.9775177248677249
+    },
+    "entropy": {
+      "pr_auc": 0.9819768931664223,
+      "roc_auc": 0.9953574158939652,
+      "weights": {
+        "failure risk": 0.9201854102399264,
+        "error frequency": 0.04043872877411393,
+        "response consistency": 0.03937586098595965
+      },
+      "rank_agreement_with_proposal": 0.8033052072657428
+    },
+    "discriminative": {
+      "pr_auc": 0.9826566843328599,
+      "roc_auc": 0.9957222920530495,
+      "weights": {
+        "failure risk": 0.9283834636316574,
+        "error frequency": 0.05645606705235572,
+        "response consistency": 0.015160469315986967
+      },
+      "rank_agreement_with_proposal": 0.7223865257580522
+    },
+    "learned (logistic)": {
+      "pr_auc": 0.9796293196021951,
+      "roc_auc": 0.9944049423480528,
+      "weights": {
+        "failure risk": 0.807719566242116,
+        "error frequency": 0.08776089953429086,
+        "response consistency": 0.10451953422359306
+      },
+      "rank_agreement_with_proposal": 0.9004010628757823
+    }
+  },
+  "uncertainty": {
+    "draws": 400,
+    "pr_auc_min": 0.1732192946366528,
+    "pr_auc_max": 0.9827942859542549,
+    "pr_auc_mean": 0.830447569187411,
+    "pr_auc_std": 0.2086215887140353,
+    "pr_auc_p05": 0.36692070423414425,
+    "pr_auc_p95": 0.9797166613088061,
+    "proposal_pr_auc": 0.9678909070615105,
+    "proposal_percentile": 0.705
+  }
+}

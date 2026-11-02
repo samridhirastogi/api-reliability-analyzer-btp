@@ -104,6 +104,36 @@ running system to observe its response is established practice [8]. It is the
 only practical way to obtain labelled failure data without waiting for
 production outages, and it is what makes the ground truth in RCAEval exact.
 
+**Constructing and validating a composite score.** The reliability score is a
+*composite indicator*: several measured quantities combined into one number by
+a weighting scheme. This is a well-studied construction outside software
+engineering, and the OECD/JRC *Handbook on Constructing Composite Indicators*
+[13] is its standard reference. Its central methodological requirement is that
+a composite index is not defensible from its weights alone: the weighting
+scheme must be stated, justified against a theoretical framework, and then
+subjected to an **uncertainty and sensitivity analysis** showing whether the
+conclusions survive a different choice of weights. The Handbook also notes that
+most published composite indicators simply use equal weights, which is the
+honest null hypothesis against which any other scheme should be compared.
+
+Two families of weighting method are relevant. *Subjective* schemes elicit
+weights from domain experts, most commonly via the Analytic Hierarchy Process
+(AHP) [14], which is the usual choice when weighting the quality
+characteristics of ISO/IEC 25010 [15]. *Objective* schemes derive weights from
+the data, the most common being Shannon entropy weighting, which assigns more
+weight to indicators that vary more; it is widely used but criticised for being
+hypersensitive to small changes and for over-weighting indicators that vary for
+uninteresting reasons [16].
+
+A gap is visible across this literature. The software-quality studies that
+apply AHP to ISO/IEC 25010 generally report expert-elicited weights and an AHP
+consistency ratio, but no sensitivity analysis of the weights themselves, and
+ISO/IEC 25023 does not prescribe how weighting coefficients should be
+established at all. Section 9.5 therefore applies the Handbook's procedure to
+this project's own score: four alternative weightings are compared with the
+proposal's, and several hundred random weightings are sampled to measure how
+much the choice changes the result.
+
 **Machine-learning methods used.** The failure-risk model is a random forest
 [9], chosen for its tolerance of correlated and differently scaled features and
 its interpretable impurity-based importances. Because the score treats the
@@ -421,3 +451,27 @@ than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets,"
 [12] E. McDermott et al., "The receiver operating characteristic curve
 accurately assesses imbalanced datasets," *Patterns*, 2024. — included because
 it argues against [11]; cite both if the choice of metric is discussed.
+
+[13] OECD and European Commission Joint Research Centre, *Handbook on
+Constructing Composite Indicators: Methodology and User Guide*, OECD
+Publishing, 2008. (Also issued as OECD Statistics Working Paper STD/DOC(2005)3;
+principal authors M. Nardo, M. Saisana, A. Saltelli, S. Tarantola, A. Hoffman
+and E. Giovannini.) — **the key methodological reference for Section 9.5.**
+
+[14] T. L. Saaty, "A scaling method for priorities in hierarchical structures,"
+*Journal of Mathematical Psychology*, vol. 15, no. 3, pp. 234–281, 1977. (The
+Analytic Hierarchy Process; see also Saaty, *The Analytic Hierarchy Process*,
+McGraw-Hill, 1980.)
+
+[15] ISO/IEC 25010:2011, *Systems and software engineering — Systems and
+software Quality Requirements and Evaluation (SQuaRE) — System and software
+quality models*. (Revised as ISO/IEC 25010:2023; check which edition your
+department expects, as the sub-characteristic count differs between them. The
+companion measurement standard ISO/IEC 25023 does not prescribe how weighting
+coefficients should be set, which is part of the gap in Section 4(b).)
+
+[16] Y. Zhu, D. Tian and F. Yan, "Effectiveness of Entropy Weight Method in
+Decision-Making," *Mathematical Problems in Engineering*, 2020. — on Shannon
+entropy weighting and its known failure modes. For a direct comparison with
+principal-component weighting see also the PLoS ONE study of entropy versus PCA
+indexing methods (2022).
