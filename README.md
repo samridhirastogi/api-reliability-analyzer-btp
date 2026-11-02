@@ -65,8 +65,10 @@ detector looks like on this task. The demanding numbers are the transfer results
 in finding 2, and the labelling sensitivity check below.
 
 `reports/RESULTS.md` has the full tables, `reports/ABLATIONS.md` the two
-ablations, and `reports/BASELINES.md` the baseline comparison and the
-alternative-labelling check. Figures land in `reports/figures/`.
+ablations, `reports/BASELINES.md` the baseline comparison, and
+`reports/PROPAGATION.md` the measurement behind the labelling choice. Figures
+land in `reports/figures/`. The write-up — literature survey, research gap,
+methodology — is in [`docs/THESIS.md`](docs/THESIS.md).
 
 ### Against baselines, and under a harder labelling
 
@@ -176,6 +178,7 @@ python -m src.report        # figures and RESULTS.md
 python -m src.endpoints     # optional: score individual endpoints from spans
 python -m src.ablation      # optional: the two ablations
 python -m src.baselines     # optional: baselines + labelling sensitivity
+python -m src.propagation   # how far faults actually spread
 ```
 
 `python -m src.baselines` compares against the alternative labelling, which is
@@ -309,6 +312,8 @@ src/score.py       the reliability score
 src/report.py      figures and RESULTS.md
 src/ablation.py    feature-transfer and score-component ablations
 src/baselines.py   logistic/threshold baselines + labelling sensitivity
+src/propagation.py measures how far a fault actually spreads
+docs/THESIS.md     the write-up: survey, gap, methodology, results
 src/endpoints.py   endpoint-level scoring from raw request spans
 src/viz.py         shared palette and chart theme
 dashboard/app.py   Streamlit dashboard
